@@ -1,7 +1,8 @@
 const User = require("../model/authModel");
 const jwt = require("jsonwebtoken");
 
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 3 * 24 * 60 * 60; // Token expiration time in seconds
+
 const createToken = (id) => {
   return jwt.sign({ id }, "kishan sheth super secret key", {
     expiresIn: maxAge,
@@ -41,9 +42,10 @@ module.exports.register = async (req, res, next) => {
     const token = createToken(user._id);
 
     res.cookie("jwt", token, {
-      withCredentials: true,
-      httpOnly: false,
-      maxAge: maxAge * 1000,
+      httpOnly: true, // Securely prevents client-side access to the cookie
+      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+      maxAge: maxAge * 1000, // Cookie expiration time in milliseconds
+      sameSite: 'None', // Allow cookies to be sent with cross-site requests
     });
 
     res.status(201).json({ user: user._id, created: true });
@@ -59,7 +61,12 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 });
+    res.cookie("jwt", token, {
+      httpOnly: true, // Securely prevents client-side access to the cookie
+      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+      maxAge: maxAge * 1000, // Cookie expiration time in milliseconds
+      sameSite: 'None', // Allow cookies to be sent with cross-site requests
+    });
     res.status(200).json({ user: user._id, status: true });
   } catch (err) {
     const errors = handleErrors(err);
