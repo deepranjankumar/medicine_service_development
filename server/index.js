@@ -19,7 +19,7 @@ const io = new Server(server, {
 
 // CORS configuration
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://medicine-service-development-4.onrender.com/",
   methods: ["GET", "POST"],
   credentials: true
 }));
