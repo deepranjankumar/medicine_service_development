@@ -30,7 +30,6 @@ const inputEvent=(event)=>{
 const handleSubmit = async (event) => {
   event.preventDefault();
   
-  
   try {
     const { data } = await axios.post(
       "https://medicine-service-development-2.onrender.com/login",
@@ -40,22 +39,23 @@ const handleSubmit = async (event) => {
       { withCredentials: true }
     );
     
-    // Logging the server response for debugging
     console.log("Server response:", data);
-    navigate("/consult");
-    console.log("back to home");
+    
     if (data.errors) {
       const { email, password } = data.errors;
       if (email) generateError(email);
       else if (password) generateError(password);
     } else {
-      // Redirect to home if the login is successful
+      console.log("Navigating to /home...");
       navigate("/home");
     }
+    
+    console.log("Navigated or error handled.");
   } catch (ex) {
     console.log("Error:", ex);
   }
 };
+
 
 
     return(<>
