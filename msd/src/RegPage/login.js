@@ -27,29 +27,33 @@ const inputEvent=(event)=>{
   }))
 }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://medicine-service-development-2.onrender.com/login",
-        {
-          ...values,
-        },
-        { withCredentials: true }
-      );
-      if (data) {
-        if (data.errors) {
-          const { email, password } = data.errors;
-          if (email) generateError(email);
-          else if (password) generateError(password);
-        } else {
-          navigate("/home");
-        }
-      }
-    } catch (ex) {
-      console.log(ex);
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const { data } = await axios.post(
+      "https://medicine-service-development-2.onrender.com/login",
+      {
+        ...values,
+      },
+      { withCredentials: true }
+    );
+    
+    // Logging the server response for debugging
+    console.log("Server response:", data);
+    
+    if (data.errors) {
+      const { email, password } = data.errors;
+      if (email) generateError(email);
+      else if (password) generateError(password);
+    } else {
+      // Redirect to home if the login is successful
+      navigate("/home");
     }
-  };
+  } catch (ex) {
+    console.log("Error:", ex);
+  }
+};
+
 
     return(<>
       <div className="login-page">
