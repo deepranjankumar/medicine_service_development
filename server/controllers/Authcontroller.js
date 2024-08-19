@@ -35,17 +35,17 @@ const handleErrors = (err) => {
   return errors;
 };
 
-module.exports.register = async (req, res, next) => {
+app.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.create({ email, password });
     const token = createToken(user._id);
 
     res.cookie("jwt", token, {
-      httpOnly: true, // Securely prevents client-side access to the cookie
-      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      maxAge: maxAge * 1000, // Cookie expiration time in milliseconds
-      sameSite: 'None', // Allow cookies to be sent with cross-site requests
+      httpOnly: true, // Set to true for security in production
+      secure: false, // Set to true if using HTTPS
+      sameSite: 'lax', // 'lax' or 'strict' or 'none' based on your needs
+      maxAge: maxAge * 1000,
     });
 
     res.status(201).json({ user: user._id, created: true });
@@ -54,22 +54,23 @@ module.exports.register = async (req, res, next) => {
     const errors = handleErrors(err);
     res.json({ errors, created: false });
   }
-};
+});
 
-module.exports.login = async (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
     res.cookie("jwt", token, {
-      httpOnly: true, // Securely prevents client-side access to the cookie
-      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      maxAge: maxAge * 1000, // Cookie expiration time in milliseconds
-      sameSite: 'None', // Allow cookies to be sent with cross-site requests
+      httpOnly: true,
+      secure: false, // Set to true if using HTTPS
+      sameSite: 'lax', // 'lax' or 'strict' or 'none' based on your needs
+      maxAge: maxAge * 1000,
     });
     res.status(200).json({ user: user._id, status: true });
   } catch (err) {
     const errors = handleErrors(err);
     res.json({ errors, status: false });
   }
-};
+});
+
