@@ -29,8 +29,8 @@ const inputEvent=(event)=>{
 
 const handleSubmit = async (event) => {
   event.preventDefault();
+  console.log("back to home");
   navigate("/home");
-
   try {
     const { data } = await axios.post(
       "https://medicine-service-development-2.onrender.com/login",
