@@ -1,17 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const http = require('http');
 const { Server } = require("socket.io");
 
-const authRoutes = require('./Routes/AuthRoutes');
-mongoose.set('strictQuery', false);
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Ensure this matches your frontend's URL
+    origin: "https://medicine-service-development-4.onrender.com", // Ensure this matches your frontend's URL
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -19,10 +20,11 @@ const io = new Server(server, {
 
 // CORS configuration
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://medicine-service-development-4.onrender.com", // Note: No trailing slash
   methods: ["GET", "POST"],
   credentials: true
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -193,13 +195,14 @@ io.on("connection", (socket) => {
   });
 });
 
-// Database connection
-mongoose.connect('mongodb://127.0.0.1:27017/jwt', {
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connection successful'))
-.catch((err) => console.log(err));
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 const PORT = process.env.PORT || 4000;

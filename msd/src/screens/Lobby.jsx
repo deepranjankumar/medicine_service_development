@@ -34,7 +34,7 @@ const room=1;
         navigate("/login");
       } else {
         const { data } = await axios.post(
-          "http://localhost:4000",
+          "https://medicine-service-development-2.onrender.com",
           {},
           {
             withCredentials: true,
