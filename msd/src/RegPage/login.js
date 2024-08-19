@@ -33,7 +33,6 @@ const handleSubmit = async (event) => {
 
   try {
     const { data } = await axios.post(
-      console.log(data);
       "https://medicine-service-development-2.onrender.com/login",
       {
         ...values,
