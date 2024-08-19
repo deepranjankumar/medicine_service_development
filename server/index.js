@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const http = require('http');
 const { Server } = require("socket.io");
 
-const authRoutes = require('./Routes/AuthRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const server = http.createServer(app);
