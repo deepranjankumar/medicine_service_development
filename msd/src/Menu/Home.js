@@ -17,35 +17,40 @@ export default function Home(props) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
-    const verifyUser = async () => {
-      try {
-        if (!cookies.jwt) {
-          console.log("No JWT cookie, navigating to login...");
-          navigate("/login");
-        } else {
-          const { data } = await axios.post(
-            "https://medicine-service-development-2.onrender.com",
-            {},
-            { withCredentials: true }
-          );
+  const verifyUser = async () => {
+    console.log("Cookies:", cookies); // Log cookies to verify
 
-          console.log("Server response:", data);
+    if (!cookies.jwt) {
+      console.log("No JWT cookie, navigating to login...");
+      navigate("/login");
+      return;
+    }
 
-          if (!data.status) {
-            removeCookie("jwt");
-            console.log("User not verified, navigating to login...");
-            navigate("/login");
-          } else {
-            setTemp(data.user);
-          }
-        }
-      } catch (error) {
-        console.error("Error verifying user:", error);
+    try {
+      const { data } = await axios.post(
+        "https://medicine-service-development-2.onrender.com/verify",
+        {},
+        { withCredentials: true }
+      );
+
+      console.log("Server response:", data); // Log server response
+
+      if (!data.status) {
+        removeCookie("jwt");
+        navigate("/login");
+      } else {
+        setTemp(data.user);
       }
-    };
+    } catch (error) {
+      console.error("Verification error:", error);
+      removeCookie("jwt");
+      navigate("/login");
+    }
+  };
 
-    verifyUser();
-  }, [cookies, navigate, removeCookie]);
+  verifyUser();
+}, [cookies, navigate, removeCookie]);
+
 
   const logOut = () => {
     removeCookie("jwt");
