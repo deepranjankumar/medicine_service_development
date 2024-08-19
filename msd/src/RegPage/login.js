@@ -30,7 +30,7 @@ const inputEvent=(event)=>{
 const handleSubmit = async (event) => {
   event.preventDefault();
   console.log("back to home");
-  navigate("/home");
+  
   try {
     const { data } = await axios.post(
       "https://medicine-service-development-2.onrender.com/login",
@@ -42,7 +42,7 @@ const handleSubmit = async (event) => {
     
     // Logging the server response for debugging
     console.log("Server response:", data);
-    
+    navigate("/home");
     if (data.errors) {
       const { email, password } = data.errors;
       if (email) generateError(email);
