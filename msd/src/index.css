@@ -1,0 +1,201 @@
+/* General styles for navbar and button */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+body::before {
+  content: "";
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* Ensure proper spacing below the navbar */
+.main-content {
+  margin-top: 60px;
+  width:100%;
+}
+
+.navbar {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  padding: 0 10px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  width: 100%; /* Ensure full width */
+  position: fixed; /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.logo-amb {
+  display: flex;
+  align-items: center;
+  color: white;
+  flex: 1; /* Allow to take available space */
+}
+
+.button {
+  position: absolute; /* Position absolutely within .navbar */
+  right: 10px; /* Distance from right edge */
+   top: 50%; 
+  transform: translateY(-50%); /* Adjust for exact centering */
+  display: none; /* Hide by default */
+  flex-direction: row; /* Stack buttons vertically on mobile */
+  /* background-color: black; /* Ensure background color */
+  /* padding: 10px; * */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.button.active {
+  display: flex; /* Show when active */
+}
+
+.button button {
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 95px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  margin: 5px 0; /* Space between buttons */
+}
+
+.abdm {
+  display: flex;
+  justify-content: space-between; /* Aligns .left to the left and .right to the right */
+  align-items: center; /* Centers the content vertically */
+  width: 100%; /* Full width of the container */
+  padding: 20px; /* Add padding if needed */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.left {
+  flex: 2; /* Allows .left to take available space */
+  margin-right: 20px; /* Adds space between the left and right sections */
+}
+
+.right {
+  flex: 1; /* Allows .right to take available space */
+  text-align: right; /* Aligns text inside the .right div to the right */
+}
+
+.right img {
+  max-width: 100%; /* Ensures the image scales properly */
+  height: auto; /* Maintains aspect ratio */
+}
+.abdm div p{
+  font-size:22px;
+}
+.left button{
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  
+}
+.for_doc {
+  display: flex;
+  justify-content: space-between; /* Aligns .left to the left and .right to the right */
+  align-items: center; /* Vertically centers the content */
+  width: 100%; /* Full width of the container */
+  padding: 20px; /* Add padding if needed */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.for_doc .left {
+  flex: 1; /* Allows .left to take available space */
+  margin-right: 20px; /* Adds space between the left and right sections */
+}
+
+.for_doc .right {
+  margin-left: 40px; /* Allows .right to take available space */
+  text-align:left; /* Aligns text inside the .right div to the right */
+}
+
+.for_doc div img {
+  width: 100%; /* Ensures the image takes up the full width of the .right container */
+  height: auto; /* Maintains the aspect ratio */
+  max-height: 100%; /* Allows the image to increase in height proportionally */
+  object-fit: cover; /* Ensures the image covers the entire container if needed */
+}
+
+.for_doc div button {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+.dash-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping if the container is not wide enough */
+  justify-content: space-between; /* Space out the items evenly */
+  gap: 20px; /* Space between the items */
+  padding: 20px; /* Optional padding around the container */
+  width: 100%;
+  max-width: 1200px; /* Optional max width to control container size */
+  margin: 0 auto; /* Centers the container horizontally */
+  box-sizing: border-box; /* Includes padding and borders in total width and height */
+  height:100%;
+}
+
+.dash-container > div {
+  flex: 1;
+  min-width: 200px; /* Minimum width for each section */
+}
+
+
+.dash-container div h3{
+  color:antiquewhite;
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar { 
+    width:100%;
+    flex-direction: row;
+    justify-content: center;
+    padding:0px;
+    
+  }
+
+  .main-content{
+  width:100%;
+  padding:0px;
+  margin-right:100px;
+  }
+
+  .button {
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 70px;
+  width: 15%;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .button button {
+    height: 30px;
+    font-size: 14px;
+  }
+}

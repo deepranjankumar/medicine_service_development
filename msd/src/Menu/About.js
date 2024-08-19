@@ -1,0 +1,22 @@
+import React from 'react';
+import './about.css'
+const About=()=>{
+    return(<>
+        <div className="details">
+            <img src="deep.jpg" alt="efdf" style={{height:"148px",borderRadius:"50%",backgroundColor:"pink"}}/>
+            <div className="name">
+            <h1 style={{ color: 'black' }}>Name:Deepranajn kumar</h1>
+            <h1 style={{ color: 'black' }}>Speclist:Web Developer</h1>
+            </div>
+            <div className="edu">
+            <h1 style={{ color: 'black' }}>Education:IIIT JAABALPUR</h1>
+            <h1 style={{ color: 'black' }}>RegistrationNo:INZPK5576N</h1>
+            </div>
+        </div>
+        <hr style={{textAlign:'center',width:'90%'}}/>
+        <div className="doc-detail">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, culpa excepturi. Voluptatum, sequi quae vel velit quod aperiam impedit odio ipsam ab minima nobis perferendis, molestiae veniam id. Iure tempora sed quia odio provident, voluptatem culpa odit quae ea consequuntur fuga optio cupiditate, mollitia blanditiis nihil exercitationem possimus repellendus impedit ab veritatis similique ducimus. Commodi molestias dolorem eos necessitatibus quibusdam velit similique consectetur facere nobis non, ad asperiores officiis vel incidunt deserunt! Veritatis eveniet labore quasi eligendi sint eum unde. Ipsam atque quas ad odio! Quo tempora ut odit minus quos esse repellat! Ex ipsam nesciunt autem quod consectetur perferendis obcaecati cum voluptates neque adipisci provident saepe quidem, ipsa tempora mollitia porro exercitationem voluptatum quaerat aspernatur natus eligendi illo voluptatem sunt sit? Perspiciatis facilis veniam, quisquam a incidunt, assumenda maxime voluptates fuga sed, culpa vero dicta vel adipisci ducimus fugit tempore repellat totam perferendis ea alias illum nemo. Quae libero aliquid ea suscipit minus id sit quaerat magni nihil aut unde vel ipsa animi eligendi, mollitia molestiae, fugit officiis cumque nostrum nobis! Tenetur facilis aliquam dicta eius nobis, repellat accusamus alias maiores nihil veniam consequuntur numquam aspernatur qui rerum beatae nisi nesciunt quasi quidem? Repudiandae vitae minima amet fugit quod! Omnis dicta hic fugit fugiat dignissimos, nesciunt nobis odit porro maiores beatae? Debitis, et eos, sint molestias ratione accusamus voluptate ducimus, aspernatur aliquam quam dicta ad eum facilis! Hic, perspiciatis veniam ab quidem dolorem magnam in quasi odio sint corporis ad repellat, deserunt, unde dolorum eos? Numquam, alias architecto saepe animi necessitatibus labore optio molestias beatae quod deserunt, facere, ut consectetur? Dignissimos amet odio incidunt ratione. Earum odio soluta quae ea culpa beatae eum dolorum, optio esse temporibus et neque laborum ducimus suscipit accusantium distinctio doloremque officiis! Fuga rerum aspernatur quia blanditiis dolorem? Amet vero repudiandae magnam incidunt dicta aspernatur, dolor delectus odit sunt molestias officia vel ex reiciendis fuga accusantium praesentium dolore at eaque dignissimos, quam laborum, eos alias minus. Sint dolorem ea nobis eos nostrum, dignissimos aliquid repellat nisi vero molestiae quos quo, nemo sunt delectus. Ab eveniet odio id molestias nemo omnis unde nam, ullam laudantium debitis, nesciunt et commodi. Aut iste possimus explicabo eligendi molestiae nisi laudantium nesciunt commodi architecto, obcaecati odit ad cum autem optio adipisci odio harum porro ducimus illum vero corporis nemo animi mollitia. Incidunt accusamus consectetur recusandae nihil magnam minus eligendi qui saepe aut. Ea corrupti cupiditate nostrum perferendis molestias aut laboriosam pariatur minima, corporis placeat optio eum quod enim dolore omnis sint odit praesentium veniam repellendus earum eveniet repudiandae. Cupiditate autem voluptates asperiores recusandae doloribus deserunt a aperiam! Dolore deserunt soluta eum, ratione eveniet ad voluptate quaerat iure sed vero alias odio quasi sapiente repellat eaque quod laboriosam quia officiis accusantium numquam nemo reprehenderit molestiae cum. Maiores vero exercitationem aliquam nobis minima illo quisquam asperiores culpa accusamus. Animi cupiditate modi totam tempora reprehenderit magnam omnis porro delectus veniam, cum debitis eius. At aliquid neque nesciunt recusandae velit unde maxime expedita quia commodi voluptatem non explicabo autem beatae, animi dicta illo, eaque accusamus labore quas voluptatibus!</p>
+            </div>
+    </>)
+}
+export default About;

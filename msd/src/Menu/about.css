@@ -1,0 +1,22 @@
+.details img{
+    display: block; /* or inline-block */
+    margin-left: auto;
+    margin-right: auto;
+}
+.name {
+    display:flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+}
+.edu{
+    display:flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+
+}
+.doc-detail{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+}

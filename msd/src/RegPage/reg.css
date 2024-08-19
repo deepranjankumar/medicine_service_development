@@ -1,0 +1,96 @@
+.login-page{
+   display:flex;
+   width:100%;
+   justify-content: center;
+   height: 100vh;
+   align-items: center;
+
+}
+
+.login-page-div form {
+    width: 100%; /* Add this line */
+  }
+.form-input{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+   
+}
+
+.form-input input{
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius:8px;
+    height:29px;
+    
+}
+.login-page-div{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin:0 auto;
+    background-color:rgb(238, 238, 238,.7);
+    height:60vh;
+    width:30%;
+}
+.checkbox{
+    display:flex;
+    align-items: center;
+    justify-content:space-around;
+    
+}
+.checkbox button{
+    border-radius:8px;
+    height:29px;
+}
+.btn{
+    width:90%;
+    height:25px;
+    border-radius: 11px;
+    margin-top:25px;
+    cursor: pointer;
+    background-color:rgb(58, 58, 203);
+}
+.submit-btn{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:90%;
+   margin:0 auto;
+}
+.login-page:before{
+    content: "";
+  background-image: url('https://cdn.pixabay.com/photo/2022/09/26/06/54/working-time-7479835_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8; /* Adjust the opacity value as needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind the content */
+}
+
+.other-option img{
+ height:35px;
+ margin-right: 15px;
+ border-radius: 50%;
+ color:inherit;
+ cursor: pointer;
+ 
+}
+.sign-page-div{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(238, 238, 238,.7);
+    height:60vh;
+    width:30%;
+}
+.sign-page-div form {
+    width: 100%; /* Add this line */
+  }

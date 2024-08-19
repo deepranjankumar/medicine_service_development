@@ -1,0 +1,187 @@
+
+
+.ambulance::before{
+    content: "";
+  background-image: url('../../public/images/logo/ambulance.avif');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6; /* Adjust the opacity value as needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind the content */
+}
+
+.ambulance{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+.ambulance input {
+    width:45%;
+    border-radius: 9px;
+    height:35px;
+}
+.ambulance button{
+    margin-top:15px;
+    height:30px;
+    border-radius: 6px;
+    background-color: #1168d3;
+    color: white;
+}
+.ambulance img{
+    height:30px;
+    cursor: pointer;
+}
+.offer{
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    background-color: rgb(66, 88, 80,.3);
+    width: 90%;
+}
+.offerimg{
+    height:250px;
+}
+.booking-offer{
+    color:red;
+    
+   
+}
+.booking-offer h3{
+    font-size:39px;
+}
+.price-offer p{
+    color:red;
+    font-size:49px;
+    font-weight: 800;
+}
+.container{
+    background-color: black;
+  display: block;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.container div p,h1{
+    color:white;
+}
+.footer-content{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+
+    
+}
+.cont-para{
+    text-align:center;
+    width:70%;
+}
+.payment div img{
+    height:300px;
+}
+
+.payment-body::before{
+    content: "";
+    background-image: url('../../public/images/bill.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6; /* Adjust the opacity value as needed */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind the content */
+}
+.payment-body{
+    display: flex;
+    margin-left:auto;
+    margin-right:auto;
+    align-items: center;
+    width:40%;
+    /* background-color: rgb(189, 187, 185,.7); */
+    justify-content: center;
+    height:100vh;
+}
+.payment{
+    display: flex;
+    flex-direction:column;
+    margin-left:auto;
+    margin-right:auto;
+    align-items: center;
+    width:90%;
+    background-color: rgb(189, 187, 185,.7);
+    justify-content: center;
+    height:90vh;
+    border-radius: 4px;
+}
+.card-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.card-input input{
+    margin-left: auto;
+    margin-right: auto;
+    width:77%;
+    height:30px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+.card-date{
+    display: flex;
+    margin-left:auto;
+    margin-right:auto;
+    width:77%;
+    justify-content: space-between;
+}
+
+.card-date input{
+    width: 25%;
+    height:30px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.payment-btn{
+    display: flex;
+    justify-content: space-between;
+    width:77%;
+}
+.paynow{
+    width:63%;
+    height:30px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border:none;
+    background-color: #279EFF;
+    cursor: pointer;
+}
+.cancel{
+    width:23%;
+    height:30px;
+    margin-top: 20px;
+    border-radius: 8px;
+    color:#279EFF;
+    border: 2px solid #279EFF;
+    cursor: pointer;
+    
+}
+@media (max-width: 768px){
+    .booking-offer{
+        margin-left: -248px;
+    }
+     
+}
