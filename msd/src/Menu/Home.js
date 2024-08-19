@@ -14,26 +14,36 @@ export default function Home(props) {
   const [temp, setTemp] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
   const [filteredDoctors, setFilteredDoctors] = useState(DocData);
-  const [dropdownVisible, setDropdownVisible] = useState(false); // State for dropdown visibility
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
     const verifyUser = async () => {
-      if (!cookies.jwt) {
-        navigate("/login");
-      } else {
-        const { data } = await axios.post(
-          "https://medicine-service-development-2.onrender.com",
-          {},
-          { withCredentials: true }
-        );
-        if (!data.status) {
-          removeCookie("jwt");
+      try {
+        if (!cookies.jwt) {
+          console.log("No JWT cookie, navigating to login...");
           navigate("/login");
         } else {
-          setTemp(data.user);
+          const { data } = await axios.post(
+            "https://medicine-service-development-2.onrender.com",
+            {},
+            { withCredentials: true }
+          );
+
+          console.log("Server response:", data);
+
+          if (!data.status) {
+            removeCookie("jwt");
+            console.log("User not verified, navigating to login...");
+            navigate("/login");
+          } else {
+            setTemp(data.user);
+          }
         }
+      } catch (error) {
+        console.error("Error verifying user:", error);
       }
     };
+
     verifyUser();
   }, [cookies, navigate, removeCookie]);
 
@@ -57,13 +67,13 @@ export default function Home(props) {
     setDropdownVisible(!dropdownVisible);
   };
 
+  const findOrder = () => {
+    navigate('/order_details');
+  };
 
-  const findOrder=()=>{
-    navigate('/order_details')
-  }
-const findAbulance=()=>{
-  navigate('/ambulance_details')
-}
+  const findAbulance = () => {
+    navigate('/ambulance_details');
+  };
 
   return (
     <>
@@ -75,18 +85,17 @@ const findAbulance=()=>{
           </div>
           <div className="button">
             <div className="static-toast">
-              {/* <p>{temp}</p> */}
               <img
                 src="user_logo.jpg"
                 alt='logo'
                 style={{ width: '28px', height: '28px', borderRadius: '25px', cursor: 'pointer' }}
-                onClick={toggleDropdown} // Toggle dropdown on click
+                onClick={toggleDropdown}
               />
               {dropdownVisible && (
                 <div className="dropdown-menu">
                   <p>{temp}</p>
                   <p onClick={findOrder}>Appointments</p>
-                  <p onClick={findAbulance}> Booking</p>
+                  <p onClick={findAbulance}>Booking</p>
                 </div>
               )}
             </div>
