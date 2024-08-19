@@ -6,7 +6,7 @@ const http = require('http');
 const { Server } = require("socket.io");
 
 const authRoutes = require('./Routes/AuthRoutes');
-
+mongoose.set('strictQuery', false);
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
