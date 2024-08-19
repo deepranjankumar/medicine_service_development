@@ -1,8 +1,7 @@
 const User = require("../model/authModel");
 const jwt = require("jsonwebtoken");
 
-const maxAge = 3 * 24 * 60 * 60; // Token expiration time in seconds
-
+const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
   return jwt.sign({ id }, "kishan sheth super secret key", {
     expiresIn: maxAge,
@@ -35,8 +34,8 @@ const handleErrors = (err) => {
   return errors;
 };
 
-app.post('/register', async (req, res) => {
-  try {
+module.exports.register = async (req, res, next) => {
+try {
     const { email, password } = req.body;
     const user = await User.create({ email, password });
     const token = createToken(user._id);
@@ -54,10 +53,10 @@ app.post('/register', async (req, res) => {
     const errors = handleErrors(err);
     res.json({ errors, created: false });
   }
-});
+};
 
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+module.exports.login = async (req, res) => {
+ const { email, password } = req.body;
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
@@ -72,5 +71,4 @@ app.post('/login', async (req, res) => {
     const errors = handleErrors(err);
     res.json({ errors, status: false });
   }
-});
-
+};
