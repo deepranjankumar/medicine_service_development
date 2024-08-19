@@ -54,6 +54,6 @@
   },
   "options": {
     "allowedHosts": ["localhost", ".localhost"],
-    "proxy": "https://localhost:4000/"
+    "proxy": "https://medicine-service-development-2.onrender.com/"
   }
 }
