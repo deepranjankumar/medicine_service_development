@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const http = require('http');
@@ -193,13 +194,14 @@ io.on("connection", (socket) => {
   });
 });
 
-// Database connection
-mongoose.connect('mongodb://127.0.0.1:27017/jwt', {
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connection successful'))
-.catch((err) => console.log(err));
+.catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 const PORT = process.env.PORT || 4000;
