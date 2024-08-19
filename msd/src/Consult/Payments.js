@@ -8,7 +8,7 @@ const Payment = () => {
   const { appoint } = location.state;
 
   const handlePaymentSuccess = () => {
-    axios.post('http://localhost:4000/appoint', appoint)
+    axios.post('https://medicine-service-development-2.onrender.com/appoint', appoint)
       .then((response) => {
         if (response.data && response.data.status === 'success') {
           console.log('Appointment saved:', response.data);

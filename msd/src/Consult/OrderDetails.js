@@ -16,7 +16,7 @@ const OrderDetails = () => {
                 navigate("/login");
             } else {
                 const { data } = await axios.post(
-                    "http://localhost:4000",
+                    "https://medicine-service-development-2.onrender.com",
                     {},
                     { withCredentials: true }
                 );
@@ -35,7 +35,7 @@ const OrderDetails = () => {
         if (mail) {
             const fetchAppointments = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:4000/api/appointment/${mail}`);
+                    const response = await axios.get(`https://medicine-service-development-2.onrender.com/api/appointment/${mail}`);
                     console.log(response.data);
                     setAppointments(response.data);
                 } catch (error) {

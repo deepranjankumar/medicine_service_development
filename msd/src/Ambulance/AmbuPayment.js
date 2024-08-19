@@ -22,7 +22,7 @@ const AmbuPayment = () => {
 
         try {
             // Send updated data to backend API
-            await axios.post('http://localhost:4000/ambulance-book', updatedData,{
+            await axios.post('https://medicine-service-development-2.onrender.com/ambulance-book', updatedData,{
                 headers: {
                     'Content-Type': 'application/json'
                 }
