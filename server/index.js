@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const http = require('http');
@@ -204,6 +204,16 @@ mongoose.connect(uri, {
 })
 .then(() => console.log('MongoDB connection successful'))
 .catch(err => console.error('MongoDB connection error:', err));
+app.post('/verify', (req, res) => {
+  console.log("Cookies received:", req.cookies); // Log received cookies
+  const token = req.cookies.jwt;
+  if (!token) return res.status(401).json({ status: false });
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(401).json({ status: false });
+    res.json({ status: true, user: decoded.id });
+  });
+});
 
 // Start server
 const PORT = process.env.PORT || 4000;
