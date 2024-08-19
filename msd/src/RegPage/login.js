@@ -29,7 +29,7 @@ const inputEvent=(event)=>{
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  console.log("back to home");
+  
   
   try {
     const { data } = await axios.post(
@@ -42,7 +42,8 @@ const handleSubmit = async (event) => {
     
     // Logging the server response for debugging
     console.log("Server response:", data);
-    navigate("/home");
+    navigate("/consult");
+    console.log("back to home");
     if (data.errors) {
       const { email, password } = data.errors;
       if (email) generateError(email);
