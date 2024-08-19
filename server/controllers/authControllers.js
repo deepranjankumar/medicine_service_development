@@ -1,3 +1,4 @@
+
 const User = require("../model/authModel");
 const jwt = require("jsonwebtoken");
 
@@ -40,12 +41,13 @@ try {
     const user = await User.create({ email, password });
     const token = createToken(user._id);
 
-    res.cookie("jwt", token, {
-      httpOnly: true, // Set to true for security in production
-      secure: false, // Set to true if using HTTPS
-      sameSite: 'lax', // 'lax' or 'strict' or 'none' based on your needs
-      maxAge: maxAge * 1000,
-    });
+ res.cookie("jwt", token, {
+  httpOnly: true, // Ensure this is set for security
+  secure: process.env.NODE_ENV === 'production', // true if using HTTPS
+  sameSite: 'None', // Required for cross-domain cookies
+  maxAge: maxAge * 1000, // Set cookie expiration
+});
+
 
     res.status(201).json({ user: user._id, created: true });
   } catch (err) {
@@ -60,12 +62,13 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: false, // Set to true if using HTTPS
-      sameSite: 'lax', // 'lax' or 'strict' or 'none' based on your needs
-      maxAge: maxAge * 1000,
-    });
+   res.cookie("jwt", token, {
+  httpOnly: true, // Ensure this is set for security
+  secure: process.env.NODE_ENV === 'production', // true if using HTTPS
+  sameSite: 'None', // Required for cross-domain cookies
+  maxAge: maxAge * 1000, // Set cookie expiration
+});
+
     res.status(200).json({ user: user._id, status: true });
   } catch (err) {
     const errors = handleErrors(err);
