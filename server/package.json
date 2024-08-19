@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "proxy": "http://localhost:4000",
+  "proxy": "https://medicine-service-development-2.onrender.com",
   "description": "",
   "main": "index.js",
   "scripts": {
