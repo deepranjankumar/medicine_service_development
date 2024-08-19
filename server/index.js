@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -7,7 +8,7 @@ const http = require('http');
 const { Server } = require("socket.io");
 
 const authRoutes = require('./routes/authRoutes');
-
+mongoose.set('strictQuery', true)
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
