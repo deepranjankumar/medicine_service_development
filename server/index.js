@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://medicine-service-development-4.onrender.com/", // Ensure this matches your frontend's URL
+    origin: "https://medicine-service-development-4.onrender.com", // Ensure this matches your frontend's URL
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -20,10 +20,11 @@ const io = new Server(server, {
 
 // CORS configuration
 app.use(cors({
-  origin: "https://medicine-service-development-4.onrender.com/",
+  origin: "https://medicine-service-development-4.onrender.com", // Note: No trailing slash
   methods: ["GET", "POST"],
   credentials: true
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
