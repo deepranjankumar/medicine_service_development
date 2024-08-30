@@ -19,7 +19,7 @@ export default function Home(props) {
       const token = localStorage.getItem("jwtoken");
 
       if (!token) {
-        navigate("/login");
+        navigate("/home");
         return;
       }
 
