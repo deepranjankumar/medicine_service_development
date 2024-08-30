@@ -27,7 +27,7 @@ export default function Home(props) {
 
     try {
       const { data } = await axios.post(
-        "https://medicine-service-development-2.onrender.com/verify",
+        "https://medicine-service-development-2.onrender.com",
         {},
         {
           headers: {
@@ -40,7 +40,7 @@ export default function Home(props) {
         localStorage.removeItem("jwtoken");
         navigate("/login");
       } else {
-        setTemp(data.user);
+        setTemp(token);
       }
     } catch (error) {
       console.error("Verification error:", error);
