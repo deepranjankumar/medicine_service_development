@@ -20,7 +20,7 @@ export default function Home(props) {
       console.log("nothing is happing here in home due to token ")
       if (!token) {
         navigate("/home");
-        return;
+        // return;
       }
 
       try {
