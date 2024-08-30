@@ -18,6 +18,7 @@ export default function Home(props) {
     const verifyUser = async () => {
       const token = localStorage.getItem("jwtoken");
       console.log("nothing is happing here in home due to token ")
+      console.log(token)
       if (!token) {
         navigate("/login");
         return;
