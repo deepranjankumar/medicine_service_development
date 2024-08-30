@@ -66,8 +66,6 @@ const Front = () => {
                     <img src='images/ambulance.png' alt='ambulance' className="abmulance" onClick={() => { HomeClick("/login") }} />
                 </div>
                 <div className="button">
-                    <button style={{ width: buttonWidth, margin: "10px 0" }}>Service</button>
-                    
                     <button style={{ width: buttonWidth, margin: "10px 0",marginRight:"10px" }} onClick={() => { HomeClick("/login") }}>Login</button>
                 </div>
             </div>
