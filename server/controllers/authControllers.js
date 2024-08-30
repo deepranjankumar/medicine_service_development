@@ -40,7 +40,7 @@ try {
     const { email, password } = req.body;
     const user = await User.create({ email, password });
     const token = createToken(user._id);
-
+     localStorage.setItem("jwtoken", token);
  res.cookie("jwt", token, {
   httpOnly: true, // Ensure this is set for security
   secure: process.env.NODE_ENV === 'production', // true if using HTTPS
