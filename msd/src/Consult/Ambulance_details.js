@@ -10,26 +10,40 @@ const Ambulance_details = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
 
-    useEffect(() => {
-        const verifyUser = async () => {
-            if (!cookies.jwt) {
-                navigate("/login");
-            } else {
-                const { data } = await axios.post(
-                    "https://medicine-service-development-2.onrender.com",
-                    {},
-                    { withCredentials: true }
-                );
-                if (!data.status) {
-                    removeCookie("jwt");
-                    navigate("/login");
-                } else {
-                    Setmail(data.user); // Assuming data.user is just the email
-                }
-            }
-        };
-        verifyUser();
-    }, [cookies, navigate, removeCookie]);
+      useEffect(() => {
+  const verifyUser = async () => {
+    const token = localStorage.getItem("jwtoken");
+    console.log("Stored JWT Token:", token);
+
+    if (!token) {
+      console.log("No JWT token found in localStorage, navigating to login...");
+      navigate("/login");
+      return;
+    }
+
+    try {
+
+        const { data } = await axios.post(
+          "https://medicine-service-development-2.onrender.com",
+          {},
+          { withCredentials: true }
+        );
+      
+      if (!data.status) {
+        localStorage.removeItem("jwtoken");
+        navigate("/login");
+      } else {
+        Setmail(data.user);
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+      localStorage.removeItem("jwtoken");
+      navigate("/login");
+    }
+  };
+
+  verifyUser();
+}, [navigate]);
 
     useEffect(() => {
         if (mail) {
