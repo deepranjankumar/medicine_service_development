@@ -33,9 +33,7 @@ const OrderDetails = () => {
         localStorage.removeItem("jwtoken");
         navigate("/login");
       } else {
-        console.log(data.user)
         Setmail(data.user);
-          console.log(mail)
       }
     } catch (error) {
       console.error("Verification error:", error);
