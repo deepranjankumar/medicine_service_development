@@ -35,7 +35,7 @@ const Consult = () => {
     const currentDate = new Date();
     const verifyUser = async () => {
       const token = localStorage.getItem("jwtoken");
-      if (!cookies.jwt) {
+      if (!token) {
         navigate("/login");
       } else {
         const { data } = await axios.post(
