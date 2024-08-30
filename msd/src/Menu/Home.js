@@ -14,43 +14,43 @@ export default function Home(props) {
   const [filteredDoctors, setFilteredDoctors] = useState(DocData);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-//  useEffect(() => {
-//   const verifyUser = async () => {
-//     const token = localStorage.getItem("jwtoken");
-//     console.log("Stored JWT Token:", token);
+ useEffect(() => {
+  const verifyUser = async () => {
+    const token = localStorage.getItem("jwtoken");
+    console.log("Stored JWT Token:", token);
 
-//     if (!token) {
-//       console.log("No JWT token found in localStorage, navigating to login...");
-//       navigate("/login");
-//       return;
-//     }
+    if (!token) {
+      console.log("No JWT token found in localStorage, navigating to login...");
+      navigate("/login");
+      return;
+    }
 
-//     try {
-//       const { data } = await axios.post(
-//         "https://medicine-service-development-2.onrender.com/verify",
-//         {},
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`, // Ensure token is sent correctly
-//           },
-//         }
-//       );
+    try {
+      const { data } = await axios.post(
+        "https://medicine-service-development-2.onrender.com/verify",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Ensure token is sent correctly
+          },
+        }
+      );
 
-//       if (!data.status) {
-//         localStorage.removeItem("jwtoken");
-//         navigate("/login");
-//       } else {
-//         setTemp(data.user);
-//       }
-//     } catch (error) {
-//       console.error("Verification error:", error);
-//       localStorage.removeItem("jwtoken");
-//       navigate("/login");
-//     }
-//   };
+      if (!data.status) {
+        localStorage.removeItem("jwtoken");
+        navigate("/login");
+      } else {
+        setTemp(data.user);
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+      localStorage.removeItem("jwtoken");
+      navigate("/login");
+    }
+  };
 
-//   // verifyUser();
-// }, [navigate]);
+  verifyUser();
+}, [navigate]);
 
 
   const logOut = () => {
