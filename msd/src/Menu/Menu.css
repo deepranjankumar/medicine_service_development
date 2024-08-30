@@ -192,7 +192,7 @@ body {
    flex-direction: row;
    justify-content: start;
    width: 129px;
-   margin-right: 61px;
+   margin-right: -37px;
   }
   .logo-amb{
     display: flex;
