@@ -51,7 +51,7 @@ const handleSubmit = async (event) => {
       navigate("/home");
     }
     
-    console.log("Navigated or error handled.");
+    console.log("Navigated deep or error handled.");
   } catch (ex) {
     console.log("Error:", ex);
   }
