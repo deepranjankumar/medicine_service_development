@@ -26,16 +26,12 @@ export default function Home(props) {
     }
 
     try {
-      const { data } = await axios.post(
-        "https://medicine-service-development-2.onrender.com",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Ensure token is sent correctly
-          },
-        }
-      );
 
+        const { data } = await axios.post(
+          "https://medicine-service-development-2.onrender.com",
+          {},
+          { withCredentials: true }
+        );
       if (!data.status) {
         localStorage.removeItem("jwtoken");
         navigate("/login");
