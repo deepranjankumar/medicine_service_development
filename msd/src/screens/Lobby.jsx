@@ -30,7 +30,8 @@ const room=1;
   useEffect(() => {
 
     const verifyUser = async () => {
-      if (!cookies.jwt) {
+      const token = localStorage.getItem("jwtoken");
+      if (!token) {
         navigate("/login");
       } else {
         const { data } = await axios.post(
