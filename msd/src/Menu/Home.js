@@ -37,7 +37,7 @@ export default function Home(props) {
         localStorage.removeItem("jwtoken");
         navigate("/login");
       } else {
-        setTemp(token);
+        setTemp(data.user);
       }
     } catch (error) {
       console.error("Verification error:", error);
