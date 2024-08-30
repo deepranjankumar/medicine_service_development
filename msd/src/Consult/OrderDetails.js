@@ -28,12 +28,14 @@ const OrderDetails = () => {
           {},
           { withCredentials: true }
         );
-      console.log(data.user)
+      
       if (!data.status) {
         localStorage.removeItem("jwtoken");
         navigate("/login");
       } else {
+        console.log(data.user)
         Setmail(data.user);
+          console.log(mail)
       }
     } catch (error) {
       console.error("Verification error:", error);
