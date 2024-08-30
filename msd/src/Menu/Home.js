@@ -32,6 +32,7 @@ export default function Home(props) {
           {},
           { withCredentials: true }
         );
+      console.log(data.user)
       if (!data.status) {
         localStorage.removeItem("jwtoken");
         navigate("/login");
