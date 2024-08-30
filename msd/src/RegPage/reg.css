@@ -1,96 +1,111 @@
-.login-page{
-   display:flex;
-   width:100%;
-   justify-content: center;
-   height: 100vh;
-   align-items: center;
-
-}
-
-.login-page-div form {
-    width: 100%; /* Add this line */
+.login-page {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    padding: 20px; /* Add padding for smaller screens */
+    box-sizing: border-box;
   }
-.form-input{
-    display:flex;
+  
+  .login-page-div {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    width: 80%;
-   
-}
-
-.form-input input{
+    background-color: rgba(238, 238, 238, 0.7);
+    height: auto; /* Allow height to adjust based on content */
+    width: 30%;
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box;
+  }
+  
+  .form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width inside the parent */
+  }
+  
+  .form-input input {
     width: 100%;
     margin-bottom: 15px;
-    border-radius:8px;
-    height:29px;
-    
-}
-.login-page-div{
-    display:flex;
-    flex-direction:column;
-    align-items: center;
-    margin:0 auto;
-    background-color:rgb(238, 238, 238,.7);
-    height:60vh;
-    width:30%;
-}
-.checkbox{
-    display:flex;
-    align-items: center;
-    justify-content:space-around;
-    
-}
-.checkbox button{
-    border-radius:8px;
-    height:29px;
-}
-.btn{
-    width:90%;
-    height:25px;
-    border-radius: 11px;
-    margin-top:25px;
-    cursor: pointer;
-    background-color:rgb(58, 58, 203);
-}
-.submit-btn{
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    width:90%;
-   margin:0 auto;
-}
-.login-page:before{
-    content: "";
-  background-image: url('https://cdn.pixabay.com/photo/2022/09/26/06/54/working-time-7479835_1280.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8; /* Adjust the opacity value as needed */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Place it behind the content */
-}
-
-.other-option img{
- height:35px;
- margin-right: 15px;
- border-radius: 50%;
- color:inherit;
- cursor: pointer;
- 
-}
-.sign-page-div{
-    display:flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content: center;
-    background-color:rgb(238, 238, 238,.7);
-    height:60vh;
-    width:30%;
-}
-.sign-page-div form {
-    width: 100%; /* Add this line */
+    border-radius: 8px;
+    height: 29px;
+    padding: 5px;
+    box-sizing: border-box;
   }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .checkbox button {
+    border-radius: 8px;
+    height: 29px;
+  }
+  
+  .btn {
+    width: 100%; /* Full width button */
+    height: 35px; /* Increased height for better UX */
+    border-radius: 11px;
+    margin-top: 25px;
+    cursor: pointer;
+    background-color: rgb(58, 58, 203);
+    color: white;
+    font-size: 16px; /* Increase font size */
+    margin-top: -2px;
+    
+  }
+  
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width inside the parent */
+  }
+  
+  .login-page:before {
+    content: "";
+    background-image: url('https://cdn.pixabay.com/photo/2022/09/26/06/54/working-time-7479835_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  @media (max-width: 768px) {
+    .login-page-div {
+      width: 80%; /* Make the login box wider on smaller screens */
+      padding: 15px;
+    }
+  
+    .form-input {
+      width: 100%; /* Full width inside the parent */
+    }
+  
+    .btn {
+      width: 100%; /* Full width button */
+      height: 40px; /* Increased height for better UX on mobile */
+      font-size: 18px; /* Increase font size for mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-page-div {
+      width: 100%; /* Full width on very small screens */
+      padding: 10px;
+    }
+  
+    .btn {
+      height: 45px; /* Further increase height for easier tapping */
+      font-size: 20px; /* Further increase font size */
+    }
+  }
+  
