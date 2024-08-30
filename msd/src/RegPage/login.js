@@ -29,34 +29,38 @@ const inputEvent=(event)=>{
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  
+
   try {
     const { data } = await axios.post(
       "https://medicine-service-development-2.onrender.com/login",
-      {
-        ...values,
-      },
+      { ...values },
       { withCredentials: true }
     );
-    
+
     console.log("Server response:", data);
-    
+
     if (data.errors) {
       const { email, password } = data.errors;
       if (email) generateError(email);
       else if (password) generateError(password);
     } else {
-      console.log("Navigating to /home...");
-      console.log(data.Token);
-       localStorage.setItem("jwtoken", data.Token);
-      navigate("/home");
+      // Check the correct field name for the token
+      const token = data.token || data.Token || data.jwt; // Adjust this line based on the actual response
+      if (token) {
+        console.log("Storing JWT Token:", token);
+        localStorage.setItem("jwtoken", token);
+        navigate("/home");
+      } else {
+        console.error("Token is undefined");
+      }
     }
-    
+
     console.log("Navigated deep or error handled.");
   } catch (ex) {
     console.log("Error:", ex);
   }
 };
+
 
 
 
