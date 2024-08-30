@@ -34,6 +34,7 @@ const Consult = () => {
     }
     const currentDate = new Date();
     const verifyUser = async () => {
+      const token = localStorage.getItem("jwtoken");
       if (!cookies.jwt) {
         navigate("/login");
       } else {
