@@ -67,8 +67,8 @@ const Front = () => {
                 </div>
                 <div className="button">
                     <button style={{ width: buttonWidth, margin: "10px 0" }}>Service</button>
-                     <button style={{ width: buttonWidth, margin: "10px 0",marginLeft:"-80px"}} onClick={() => { HomeClick("/about") }}>About</button>
-                    <button style={{ width: buttonWidth, margin: "10px 0",marginLeft:"-100px" }} onClick={() => { HomeClick("/login") }}>Login</button>
+                    
+                    <button style={{ width: buttonWidth, margin: "10px 0",marginRight:"10px" }} onClick={() => { HomeClick("/login") }}>Login</button>
                 </div>
             </div>
             <div className="main-content" style={{ width: "100%" }}>
