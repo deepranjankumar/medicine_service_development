@@ -17,8 +17,7 @@ export default function Home(props) {
   useEffect(() => {
     const verifyUser = async () => {
       const token = localStorage.getItem("jwtoken");
-      console.log("nothing is happing here in home due to token ")
-      console.log(token)
+     console.log("Stored JWT Token:", token);
       if (!token) {
         navigate("/login");
         return;
