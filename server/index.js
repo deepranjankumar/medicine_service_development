@@ -69,6 +69,7 @@ app.post('/ambulance-book', (req, res) => {
 app.get('/api/ambulance_details/:mail', async (req, res) => {
   try {
     const Appointment = await ambulance_model.find({ mail: req.params.mail });
+    console.log(Appointment)
     if (!Appointment) {
       return res.status(404).json({ message: 'Appointment not found' });
     }
