@@ -47,6 +47,7 @@ const handleSubmit = async (event) => {
       else if (password) generateError(password);
     } else {
       console.log("Navigating to /home...");
+      console.log(data.Token);
        localStorage.setItem("jwtoken", data.Token);
       navigate("/home");
     }
