@@ -45,7 +45,7 @@ const handleSubmit = async (event) => {
       else if (password) generateError(password);
     } else {
       // Check the correct field name for the token
-      const token = data.token // Adjust this line based on the actual response
+      const token = data.status // Adjust this line based on the actual response
       if (token) {
         console.log("Storing JWT Token:", token);
         localStorage.setItem("jwtoken", token);
