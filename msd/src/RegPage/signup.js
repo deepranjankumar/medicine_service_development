@@ -54,7 +54,7 @@ function Register() {
 
     return(<>
 <div className="login-page">
-<div className="sign-page-div">
+<div className="sign-page-div" style={{backgroundColor: "rgba(238, 238, 238, 0.7)",padding:"9% 25%"}}>
 <h1 style={{fontFamily: 'Montserrat',color:'black'}}>JOIN MSD</h1>
 <form  method="post" onSubmit={ handleSubmit} >
          
