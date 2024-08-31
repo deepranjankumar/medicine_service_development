@@ -6,16 +6,11 @@ import { useSocket } from "../context/SocketProvider";
 const RoomPage = () => {
   const socket = useSocket();
   const [remoteSocketId, setRemoteSocketId] = useState(null);
-  const [myStream, setMyStream] = useState(null);
-  const [remoteStream, setRemoteStream] = useState(null);
-  const [tracksSent, setTracksSent] = useState(new Set()); // To track sent tracks
+  const [myStream, setMyStream] = useState();
+  const [remoteStream, setRemoteStream] = useState();
 
   const handleUserJoined = useCallback(({ email, id }) => {
-    if (email) {
-      console.log(`Email ${email} joined room`);
-    } else {
-      console.log("Email undefined joined room");
-    }
+    console.log(`Email ${email} joined room`);
     setRemoteSocketId(id);
   }, []);
 
@@ -24,9 +19,9 @@ const RoomPage = () => {
       audio: true,
       video: true,
     });
-    setMyStream(stream);
     const offer = await peer.getOffer();
     socket.emit("user:call", { to: remoteSocketId, offer });
+    setMyStream(stream);
   }, [remoteSocketId, socket]);
 
   const handleIncommingCall = useCallback(
@@ -45,15 +40,10 @@ const RoomPage = () => {
   );
 
   const sendStreams = useCallback(() => {
-    if (myStream) {
-      myStream.getTracks().forEach(track => {
-        if (!tracksSent.has(track)) {
-          peer.peer.addTrack(track, myStream);
-          setTracksSent(prevTracks => new Set(prevTracks.add(track)));
-        }
-      });
+    for (const track of myStream.getTracks()) {
+      peer.peer.addTrack(track, myStream);
     }
-  }, [myStream, tracksSent]);
+  }, [myStream]);
 
   const handleCallAccepted = useCallback(
     ({ from, ans }) => {
@@ -90,9 +80,9 @@ const RoomPage = () => {
 
   useEffect(() => {
     peer.peer.addEventListener("track", async (ev) => {
-      const remoteStream = ev.streams[0];
+      const remoteStream = ev.streams;
       console.log("GOT TRACKS!!");
-      setRemoteStream(remoteStream);
+      setRemoteStream(remoteStream[0]);
     });
   }, []);
 
@@ -120,36 +110,38 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto' }}>
-      <h4 style={{ textAlign: 'center' }}>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {myStream && <button onClick={sendStreams}>Send Stream</button>}
-        {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
+    <div style={{display:'flex',flexDirection:'column',justifyContent: 'center',margin:'0 auto'}}>
+      {/* <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>Room Page</h1> */}
+      <h4 style={{textAlign:'center'}}>{remoteSocketId ? "Connected" : "No one in room"}</h4>
+      <div style={{display:'flex',justifyContent: 'center'}}>
+      {myStream && <button onClick={sendStreams} >Send Stream</button>}
+      {remoteSocketId && <button onClick={handleCallUser} >CALL</button>}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', margin: '0 auto' }}>
-        {myStream && (
-          <div style={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', position: 'absolute', bottom: '25px', right: '25px' }}>
-            <ReactPlayer
-              playing
-              muted
-              height="150px"
-              width="100%"
-              url={URL.createObjectURL(myStream)}
-            />
-          </div>
-        )}
-        {remoteStream && (
-          <div style={{ marginLeft: '12px' }}>
-            <h1 style={{ color: 'green', textAlign: 'center', padding: '0px', margin: '0px' }}>Remote Stream</h1>
-            <ReactPlayer
-              playing
-              muted
-              height="600px"
-              width="100%"
-              url={URL.createObjectURL(remoteStream)}
-            />
-          </div>
-        )}
+      <div style={{display:'flex',alignItems:'center',margin:'0 auto'}}>
+      {myStream && (
+        <div style={{display:'flex',justifyContent:'flex-end',flexDirection:'column',position:'absolute',bottom:'25px',right:'25px'}} >
+          {/* <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>My Stream</h1> */}
+          <ReactPlayer
+            playing
+            muted
+            height="150px"
+            width="100%"
+            url={myStream}
+          />
+        </div>
+      )}
+      {remoteStream && (
+        <div style={{marginLeft:'12px'}}>
+          <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>Remote Stream</h1>
+          <ReactPlayer
+            playing
+            muted
+            height="600px"
+            width="100%"
+            url={remoteStream}
+          />
+        </div>
+      )}
       </div>
     </div>
   );
