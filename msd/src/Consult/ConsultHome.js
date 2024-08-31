@@ -103,11 +103,10 @@ const Consult = () => {
               </div>
             </div>
           </div>
-          <img src="/images/logo/consult.png" alt="consult" />
+          <img src="/images/logo/consult.png" alt="consult" style={{width:"85%"}} />
         </div>
       </div>
-      <h1 style={{ textAlign: 'center', color: "black", marginTop: '0px' }}>OR</h1>
-
+    
       <div className="consult-cont">
         <h1 style={{ textAlign: 'center', color: "black" }}>FIX APPOINTMENT</h1>
         <div className="consult-form">
