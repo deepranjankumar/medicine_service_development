@@ -40,9 +40,14 @@ const RoomPage = () => {
   );
 
   const sendStreams = useCallback(() => {
-    for (const track of myStream.getTracks()) {
-      peer.peer.addTrack(track, myStream);
-    }
+    if (!myStream) return;
+
+    myStream.getTracks().forEach(track => {
+      const existingSender = peer.peer.getSenders().find(sender => sender.track === track);
+      if (!existingSender) {
+        peer.peer.addTrack(track, myStream);
+      }
+    });
   }, [myStream]);
 
   const handleCallAccepted = useCallback(
@@ -114,34 +119,34 @@ const RoomPage = () => {
       {/* <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>Room Page</h1> */}
       <h4 style={{textAlign:'center'}}>{remoteSocketId ? "Connected" : "No one in room"}</h4>
       <div style={{display:'flex',justifyContent: 'center'}}>
-      {myStream && <button onClick={sendStreams} >Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser} >CALL</button>}
+        {myStream && <button onClick={sendStreams} >Send Stream</button>}
+        {remoteSocketId && <button onClick={handleCallUser} >CALL</button>}
       </div>
       <div style={{display:'flex',alignItems:'center',margin:'0 auto'}}>
-      {myStream && (
-        <div style={{display:'flex',justifyContent:'flex-end',flexDirection:'column',position:'absolute',bottom:'25px',right:'25px'}} >
-          {/* <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>My Stream</h1> */}
-          <ReactPlayer
-            playing
-            muted
-            height="150px"
-            width="100%"
-            url={myStream}
-          />
-        </div>
-      )}
-      {remoteStream && (
-        <div style={{marginLeft:'12px'}}>
-          <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>Remote Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="600px"
-            width="100%"
-            url={remoteStream}
-          />
-        </div>
-      )}
+        {myStream && (
+          <div style={{display:'flex',justifyContent:'flex-end',flexDirection:'column',position:'absolute',bottom:'25px',right:'25px'}} >
+            {/* <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>My Stream</h1> */}
+            <ReactPlayer
+              playing
+              muted
+              height="150px"
+              width="100%"
+              url={myStream}
+            />
+          </div>
+        )}
+        {remoteStream && (
+          <div style={{marginLeft:'12px'}}>
+            <h1 style={{color:'green',textAlign:'center',padding:'0px',margin:'0px'}}>Remote Stream</h1>
+            <ReactPlayer
+              playing
+              muted
+              height="600px"
+              width="100%"
+              url={remoteStream}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
